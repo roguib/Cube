@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour {
 	void FixedUpdate () {
 		//Debug.Log(rb.position.z);
 		//rb.AddForce(0, 0, forwardForce*Time.deltaTime);
-		if(rb.position.z > 125f & rb.position.y >= 0) {
+		if(rb.position.z > /*125f*/ 100000000f & rb.position.y >= 0) {
 			this.enabled = false; //the end of the level
 			rb.AddForce(0, 0, -(forwardForce*2)*Time.deltaTime, ForceMode.VelocityChange);
 			FindObjectOfType<gameManager>().winnerGame();
@@ -25,7 +25,7 @@ public class playerMovement : MonoBehaviour {
 			FindObjectOfType<gameManager>().endGame();
 		}
 		else {
-			rb.AddForce(0, 0, forwardForce*Time.deltaTime);
+			//rb.AddForce(0, 0, forwardForce*Time.deltaTime);
 			//for mobile devices:
 			if(Input.touchCount > 0) {
 				Touch touch = Input.GetTouch(0);
@@ -37,12 +37,15 @@ public class playerMovement : MonoBehaviour {
 					rb.AddForce(30*Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 				}
 			}
-			/*if(Input.GetKey("d")) {
+			if(Input.GetKey("d")) {
 				rb.AddForce(25*Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 			}
 			else if(Input.GetKey("a")) {
 				rb.AddForce(-25*Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-			}*/
+			}
+			else if(Input.GetKey("w")) {
+				rb.AddForce(0, 0, 20*Time.deltaTime, ForceMode.VelocityChange);
+			}
 			//Another way to handle user input:
 			//Debug.Log(Input.GetAxis("Horizontal") + Input.GetAxis("Vertical"));
 		}
