@@ -48,18 +48,21 @@ public class terrainSpawner : MonoBehaviour {
 		200 - 500 : 100 / 4
 		500 > 100 /5
 		 */
-		 if(playerPosition.position.z-29f >= 0 & playerPosition.position.z-29f <= 200) {
-			 Debug.Log("if");
-			 instantateObstacles(100/3, newTerrain);
-		 }
-		 else if(playerPosition.position.z-29f > 200 & playerPosition.position.z-29f <= 500) {
-			 Debug.Log("else if");
-			 instantateObstacles(100/4, newTerrain);
-		 }
-		 else {
+		if(playerPosition.position.z-29f >= 0 & playerPosition.position.z-29f <= 200) {
+			Debug.Log("if");
+			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			instantateObstacles(100/3, newTerrain);
+		}
+		else if(playerPosition.position.z-29f > 200 & playerPosition.position.z-29f <= 500) {
+			Debug.Log("else if");
+			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			instantateObstacles(100/4, newTerrain);
+		}
+		else {
 			Debug.Log("else");
-			 instantateObstacles(100/5, newTerrain);
-		 }
+			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			instantateObstacles(100/5, newTerrain);
+		}
 	}
 
 	private void instantateObstacles(int distanceBetweenObstacles, GameObject newTerrain) {
@@ -68,15 +71,13 @@ public class terrainSpawner : MonoBehaviour {
 		float zPosition = newTerrain.transform.position.z;
 		float zMin = newTerrain.transform.position.z-50f;
 		float zMax = newTerrain.transform.position.z+50f;
-		int i = 1;
-		float zPositionOfAnObstacle = zMin;
 		System.Random rnd = new System.Random();
+		float zPositionOfAnObstacle = zMin + (distanceBetweenObstacles);
 		while(zPositionOfAnObstacle < zMax) {
-			zPositionOfAnObstacle = zMin + (distanceBetweenObstacles*i);
 			float x = rnd.Next(33, 42);
-			Debug.Log("instantate obstacle");
+			Debug.Log("instantate obstacle at position x: " + x + " y: " + 1.5f + " z: " + zPositionOfAnObstacle);
 			Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
-			++i;
+			zPositionOfAnObstacle += distanceBetweenObstacles;
 		}
 	}
 }
