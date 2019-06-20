@@ -10,8 +10,11 @@ public class terrainSpawner : MonoBehaviour {
 	bool planeWasInstantiated = false;
 	int timesInstantiated = 1;
 	List<GameObject> terrain;
+	List<GameObject> obstacles;
+
 	void Start() {
 		terrain = new List<GameObject>();
+		obstacles = new List<GameObject>();
 	}
 
 	// Update is called once per frame
@@ -30,11 +33,24 @@ public class terrainSpawner : MonoBehaviour {
 		return terrain.Count;
 	}
 
+	public int getObstaclesSize() {
+		return obstacles.Count;
+	}
+
 	public void deleteFirstElementTerrain() {
 		if(terrain.Count > 0) {
 			//Debug.Log(terrain.Count);
 			Destroy(terrain[0]);
 			terrain.RemoveAt(0);
+		}
+	}
+
+	public void deleteObstaclesNotVisibles() {
+		for(int i = 0; i < obstacles.Count; ++i) {
+			if(obstacles[i].transform.position.z < playerPosition.transform.position.z - 20f) {
+				Destroy(obstacles[i]);
+				obstacles.RemoveAt(i);
+			}
 		}
 	}
 
@@ -49,18 +65,18 @@ public class terrainSpawner : MonoBehaviour {
 		500 > 100 /5
 		 */
 		if(playerPosition.position.z-29f >= 0 & playerPosition.position.z-29f <= 200) {
-			Debug.Log("if");
-			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			//Debug.Log("if");
+			//Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
 			instantateObstacles(100/3, newTerrain);
 		}
 		else if(playerPosition.position.z-29f > 200 & playerPosition.position.z-29f <= 500) {
-			Debug.Log("else if");
-			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			//Debug.Log("else if");
+			//Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
 			instantateObstacles(100/4, newTerrain);
 		}
 		else {
-			Debug.Log("else");
-			Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
+			//Debug.Log("else");
+			//Debug.Log("player position: " + playerPosition.transform.position.x + " " + playerPosition.transform.position.y + " " + playerPosition.transform.position.z);
 			instantateObstacles(100/5, newTerrain);
 		}
 	}
@@ -75,8 +91,9 @@ public class terrainSpawner : MonoBehaviour {
 		float zPositionOfAnObstacle = zMin + (distanceBetweenObstacles);
 		while(zPositionOfAnObstacle < zMax) {
 			float x = rnd.Next(33, 42);
-			Debug.Log("instantate obstacle at position x: " + x + " y: " + 1.5f + " z: " + zPositionOfAnObstacle);
-			Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+			//Debug.Log("instantate obstacle at position x: " + x + " y: " + 1.5f + " z: " + zPositionOfAnObstacle);
+			GameObject obstacle = Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+			obstacles.Add(obstacle);
 			zPositionOfAnObstacle += distanceBetweenObstacles;
 		}
 	}

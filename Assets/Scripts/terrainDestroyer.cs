@@ -14,5 +14,10 @@ public class terrainDestroyer : MonoBehaviour {
 				//Debug.Log("I want to destroy it " + playerPosition.transform.position.z + " " + playerPosition.transform.position.z); 
 			}
 		}
+		//Debug.Log(terrainSpawner.getObstaclesSize());
+		if(terrainSpawner.getObstaclesSize() > 5) {
+			//Debug.Log("I want to destroy it " + playerPosition.transform.position.z + " " + playerPosition.transform.position.z); 
+			terrainSpawner.deleteObstaclesNotVisibles();
+		}
 	}
 }
