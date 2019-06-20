@@ -8,7 +8,7 @@ public class terrainSpawner : MonoBehaviour {
 	public GameObject obstacleToSpawn;
 	public Transform playerPosition;
 	bool planeWasInstantiated = false;
-	int timesInstantiated = 1;
+	float timesInstantiated = 1.0f;
 	List<GameObject> terrain;
 	List<GameObject> obstacles;
 
@@ -21,7 +21,7 @@ public class terrainSpawner : MonoBehaviour {
 	void Update () {
 		//Debug.Log("Postion of the player: " + playerPosition.position.z + " size:" + terrain.Count);
 		if((playerPosition.position.z-25.6f) >= 70f*timesInstantiated & playerPosition.position.z != 29 & !planeWasInstantiated) {
-			terrain.Add(Instantiate(terrainToSpawn, new Vector3(37.9f, 0f, 75.6f+(100*timesInstantiated)), Quaternion.Euler(0, 0, 0)));
+			terrain.Add(Instantiate(terrainToSpawn, new Vector3(37.9f, 0f, (float)(75.5f+(100.0f*timesInstantiated))), Quaternion.Euler(0, 0, 0)));
 			++timesInstantiated;
 			planeWasInstantiated = true;
 			createObstacles(terrain[terrain.Count-1]);
