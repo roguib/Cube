@@ -29,7 +29,7 @@ public class playerMovement : MonoBehaviour {
 			//for mobile devices:
 			if(Input.touchCount > 0) {
 				Touch touch = Input.GetTouch(0);
-				Debug.Log(touch.position.x + " " + touch.position.y);
+				//Debug.Log(touch.position.x + " " + touch.position.y);
 				if(touch.position.x <= middle) {
 					rb.AddForce(-30*Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 				}

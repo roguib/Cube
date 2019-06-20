@@ -8,14 +8,14 @@ public class gameManager : MonoBehaviour {
 
 	public void endGame() {
 		if(!isGameOver) {
-			Debug.Log("Game Over");
+			//Debug.Log("Game Over");
 			isGameOver = true;
 			Invoke("restartGame", restartDelay);
 		}
 	}
 
 	public void winnerGame() {
-		Debug.Log("Winner!");
+		//Debug.Log("Winner!");
 	}
 
 	public void restartGame() {
