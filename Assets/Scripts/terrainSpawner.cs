@@ -24,7 +24,7 @@ public class terrainSpawner : MonoBehaviour {
 			terrain.Add(Instantiate(terrainToSpawn, new Vector3(37.9f, 0f, (float)(75.5f+(100.0f*timesInstantiated))), Quaternion.Euler(0, 0, 0)));
 			++timesInstantiated;
 			planeWasInstantiated = true;
-			createObstacles(terrain[terrain.Count-1]);
+			//createObstacles(terrain[terrain.Count-1]);
 		}
 		else if(playerPosition.position.z % 100  >= 1f) planeWasInstantiated = false;
 	}
