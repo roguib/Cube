@@ -20,7 +20,6 @@ public class playerMovement : MonoBehaviour {
 		if(rb.position.z > /*125f*/ 100000000f & rb.position.y >= 0) {
 			this.enabled = false; //the end of the level
 			rb.AddForce(0, 0, -(forwardForce*2)*Time.deltaTime, ForceMode.VelocityChange);
-			FindObjectOfType<gameManager>().winnerGame();
 		}
 		else if(rb.position.y < -1f) {
 			FindObjectOfType<gameManager>().endGame();
