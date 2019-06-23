@@ -8,10 +8,15 @@ public class GUIcontroller : MonoBehaviour {
 	*/
 
 	public Button pauseButton;
+	public Button playButton;
+	public Button quitButton;
 	private bool gameIsBeingPlayed = true;
+	public GameObject pauseMenu;
 	void Start () {
 		//ini listeners
 		pauseButton.onClick.AddListener(pauseGame);
+		playButton.onClick.AddListener(pauseGame);
+		quitButton.onClick.AddListener(quitGame);
 	}
 	
 	// Update is called once per frame
@@ -23,12 +28,18 @@ public class GUIcontroller : MonoBehaviour {
 		if(gameIsBeingPlayed) {
 			gameIsBeingPlayed = false;
 			Time.timeScale = 0;
-			pauseButton.GetComponentInChildren<Text>().text = "Play";
+			pauseMenu.SetActive(true);
+			pauseButton.gameObject.SetActive(false);
 		}
 		else {
 			gameIsBeingPlayed = true;
 			Time.timeScale = 1;
-			pauseButton.GetComponentInChildren<Text>().text = "Pause";
+			pauseMenu.SetActive(false);
+			pauseButton.gameObject.SetActive(true);
 		}
+	}
+
+	private void quitGame() {
+		Debug.Log("Quit");
 	}
 }
