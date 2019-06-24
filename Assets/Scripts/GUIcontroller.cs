@@ -17,6 +17,8 @@ public class GUIcontroller : MonoBehaviour {
 		pauseButton.onClick.AddListener(pauseGame);
 		playButton.onClick.AddListener(pauseGame);
 		quitButton.onClick.AddListener(quitGame);
+		pauseMenu.SetActive(false);
+
 	}
 	
 	// Update is called once per frame
