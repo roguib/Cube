@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour {
 
+	public void Start() {
+		//SceneManager.LoadScene("menuScene");
+	}
+
 	/*
 	This class handles the restart of the game
 	*/

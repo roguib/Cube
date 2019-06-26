@@ -8,7 +8,6 @@ public class playerCollision : MonoBehaviour {
 	some collisions will be undetected. To fix this we can try to build our
 	collision system but for now will work with that way
 	*/
-
 	public Rigidbody rb;
 	public playerMovement playerMovement;
 	/*

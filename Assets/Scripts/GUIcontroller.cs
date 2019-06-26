@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GUIcontroller : MonoBehaviour {
 
@@ -42,6 +44,6 @@ public class GUIcontroller : MonoBehaviour {
 	}
 
 	private void quitGame() {
-		Debug.Log("Quit");
+		SceneManager.LoadScene("menuScene");	
 	}
 }
