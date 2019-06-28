@@ -18,6 +18,11 @@ public class terrainSpawner : MonoBehaviour {
 	void Start() {
 		terrain = new List<GameObject>();
 		obstacles = new List<GameObject>();
+		while(timesInstantiated < 7.0f) {
+			terrain.Add(Instantiate(terrainToSpawn, new Vector3(37.9f, 0f, (float)(75.5f+(100.0f*timesInstantiated))), Quaternion.Euler(0, 0, 0)));
+			createObstacles(terrain[terrain.Count-1]);
+			++timesInstantiated;
+		}
 	}
 
 	void Update () {
