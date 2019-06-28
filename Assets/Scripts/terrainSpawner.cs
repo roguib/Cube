@@ -9,11 +9,13 @@ public class terrainSpawner : MonoBehaviour {
 	*/
 	public GameObject terrainToSpawn;
 	public GameObject obstacleToSpawn;
+	public GameObject smallObstacleToSpawn;
 	public Transform playerPosition;
 	bool planeWasInstantiated = false;
 	float timesInstantiated = 1.0f;
 	List<GameObject> terrain;
 	List<GameObject> obstacles;
+	static System.Random rnd = new System.Random();
 
 	void Start() {
 		terrain = new List<GameObject>();
@@ -92,16 +94,22 @@ public class terrainSpawner : MonoBehaviour {
 		500 > 100 /5  
 	*/
 	private void createObstacles(GameObject newTerrain) {
-		if(playerPosition.position.z-29f >= 0 & playerPosition.position.z-29f <= 200) {
-			instantateObstacles(100/3, newTerrain);
-		}
-		else if(playerPosition.position.z-29f > 200 & playerPosition.position.z-29f <= 500) {
+		/*if(newTerrain.transform.position.z-29f >= 0 & newTerrain.transform.position.z-29f <= 200) {*/
+			instantateObstacles(100/2, newTerrain);
+		//}
+		/*else if(newTerrain.transform.position.z-29f > 200  & playerPosition.position.z-29f <= 500) {
 			instantateObstacles(100/4, newTerrain);
-		}
-		else {
+		}*/
+		/*else {
 			instantateObstacles(100/5, newTerrain);
-		}
+		}*/
 	}
+
+	 IEnumerator MyMethod() {
+		Debug.Log("Before Waiting 2 seconds");
+		yield return new WaitForSeconds(0.5f);
+		Debug.Log("After Waiting 2 Seconds");
+ 	}
 
 	/*
 	Pre: True
@@ -110,13 +118,44 @@ public class terrainSpawner : MonoBehaviour {
 	private void instantateObstacles(int distanceBetweenObstacles, GameObject newTerrain) {
 		float zMin = newTerrain.transform.position.z-50f;
 		float zMax = newTerrain.transform.position.z+50f;
-		System.Random rnd = new System.Random();
+		/*System.Random rnd = new System.Random();
 		float zPositionOfAnObstacle = zMin + (distanceBetweenObstacles);
 		while(zPositionOfAnObstacle < zMax) {
 			float x = rnd.Next(33, 42);
 			GameObject obstacle = Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
 			obstacles.Add(obstacle);
 			zPositionOfAnObstacle += distanceBetweenObstacles;
-		}
+		}*/
+		float zPositionOfAnObstacle = zMin + (distanceBetweenObstacles);
+		while(zPositionOfAnObstacle < zMax) {
+			for(int i = 0; i < 10000; ++i);
+			int numberOfObstacles = rnd.Next(0,3);
+			if(numberOfObstacles == 0) {
+				StartCoroutine(MyMethod());
+				float x = (float)rnd.NextDouble()+rnd.Next(33,42);
+				GameObject obstacle = Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+			}
+			else if(numberOfObstacles == 1) {
+				for(int i = 0; i < 10000; ++i);
+				StartCoroutine(MyMethod());
+				float x = (float)rnd.NextDouble()+rnd.Next(33,42);
+				GameObject obstacle = Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+				StartCoroutine(MyMethod());
+				x = (float)rnd.NextDouble()+rnd.Next(33,42);
+				obstacle = Instantiate(obstacleToSpawn, new Vector3(x, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+			}
+			else {
+				GameObject obstacle = Instantiate(smallObstacleToSpawn, new Vector3(32.02f, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+				obstacle = Instantiate(smallObstacleToSpawn, new Vector3(38.17f, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+				obstacle = Instantiate(smallObstacleToSpawn, new Vector3(43.83f, 1.5f, zPositionOfAnObstacle), Quaternion.Euler(0, 0, 0));
+				obstacles.Add(obstacle);
+			}
+			zPositionOfAnObstacle += distanceBetweenObstacles;
+		}		
 	}
 }
