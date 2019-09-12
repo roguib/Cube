@@ -6,7 +6,7 @@ Cube it's my first mobile game developed with Unity engine and C#. The core of t
 
 * Endless game (as long as you keep avoiding obstacles 😊)
 
-[](media/demo1.gif)
+[gif](media/demo1.gif)
 
 * Score system
 * Game restarts if you colide against an obstacle or if you fall form the platform
