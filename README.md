@@ -11,4 +11,9 @@ Cube is my first mobile game developed with Unity engine and C#. The core of the
 
 ![gif](media/demo1.gif)
 ![gif](media/demo2.gif)
+![gif](media/demo3.gif)
 
+# TODO
+- [ ] Improve GUI in general
+- [ ] Ranking system
+- [ ] Connect the game with AdWords
